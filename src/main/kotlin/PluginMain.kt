@@ -1,17 +1,11 @@
 package dirtkai.mirai.plugin
 
+
+import dirtkai.mirai.plugin.sqlCommand.*
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
-import net.mamoe.mirai.event.EventChannel
 import net.mamoe.mirai.event.GlobalEventChannel
-import net.mamoe.mirai.event.events.BotInvitedJoinGroupRequestEvent
 import net.mamoe.mirai.event.events.FriendMessageEvent
-import net.mamoe.mirai.event.events.GroupMessageEvent
-import net.mamoe.mirai.event.events.NewFriendRequestEvent
-import net.mamoe.mirai.event.globalEventChannel
-import net.mamoe.mirai.message.data.Image
-import net.mamoe.mirai.message.data.Image.Key.queryUrl
-import net.mamoe.mirai.message.data.PlainText
 import net.mamoe.mirai.utils.info
 
 /**
@@ -53,6 +47,10 @@ object PluginMain : KotlinPlugin(
             //复读示例
             if (message.contentToString().startsWith("复读")) {
                 sender.sendMessage(message.contentToString().replace("复读", ""))
+            }
+            if (message.contentToString().startsWith("增加")) {
+                sender.sendMessage(sqlAdd(message.contentToString()))
+                main()
             }
         }
     }
